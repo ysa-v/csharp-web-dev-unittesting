@@ -21,10 +21,17 @@ namespace CarTests
         }
 
         [TestMethod]
-        public void TestLevelAfterDrive()
+        public void TestGasTankAfterDriving()
         {
             test_car.Drive(50);
             Assert.AreEqual(9, test_car.GasTankLevel, .001);
+        }
+
+        [TestMethod]
+        public void TestGasTankAfterExceedingTankRange()
+        {
+            test_car.Drive(501);
+            Assert.AreEqual(0, test_car.GasTankLevel, .001);
         }
 
         //TODO: gasTankLevel is accurate after driving within tank range
