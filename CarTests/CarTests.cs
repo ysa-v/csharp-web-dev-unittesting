@@ -6,17 +6,25 @@ namespace CarTests
     [TestClass]
     public class CarTests
     {
-        [TestMethod]
-        public void EmptyTest()
+        Car test_car;
+
+        [TestInitialize]
+        public void CreateCarObject()
         {
-            Assert.AreEqual(10, 10, .001);
+            test_car = new Car("Toyota", "Prius", 10, 50);
         }
 
         [TestMethod]
         public void TestInitialGasTank()
         {
-            Car test_car = new Car("Toyota", "Prius", 10, 50);
             Assert.AreEqual(10, test_car.GasTankLevel, .001);
+        }
+
+        [TestMethod]
+        public void TestLevelAfterDrive()
+        {
+            test_car.Drive(50);
+            Assert.AreEqual(9, test_car.GasTankLevel, .001);
         }
 
         //TODO: gasTankLevel is accurate after driving within tank range
