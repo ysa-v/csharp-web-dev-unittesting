@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CarNS;
+using System;
 
 namespace CarTests
 {
@@ -32,6 +33,14 @@ namespace CarTests
         {
             test_car.Drive(501);
             Assert.AreEqual(0, test_car.GasTankLevel, .001);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestGasOverfillException()
+        {
+            test_car.AddGas(5);
+            Assert.Fail("Shouldn't get here, car cannot have more gas in tank than the size of the tank");
         }
 
         //TODO: gasTankLevel is accurate after driving within tank range
